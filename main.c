@@ -10,9 +10,12 @@
 #include "msd/bootcode4.h"
 #include "msd/start4.h"
 
-/* Assume BSD without native fmemopen() if doesn't seem to be glibc */
-#if defined(__APPLE__) || (!defined(_GNU_SOURCE) && (!defined(_POSIX_C_SOURCE) || _POSIX_C_SOURCE < 200809L))
-#include "fmemopen.c" // BSD fmemopen() compat in terms of funopen()
+#ifdef NEED_FMEMOPEN
+	#ifdef HAVE_FUNOPEN
+		#include "fmemopen.c"
+	#else
+		#error Need fmemopen or funopen, or new fmemopen fallback.
+	#endif
 #endif
 
 int signed_boot = 0;

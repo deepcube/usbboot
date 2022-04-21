@@ -27,6 +27,7 @@ Make sure that the system date is set correctly, otherwise Git may produce an er
 sudo apt install git libusb-1.0-0-dev
 git clone --depth=1 https://github.com/raspberrypi/usbboot
 cd usbboot
+./configure
 make
 sudo ./rpiboot
 ```
@@ -39,14 +40,16 @@ From a macOS machine, you can also run usbboot, just follow the same steps:
 1. Clone the `usbboot` repository
 2. Install `libusb` (`brew install libusb`)
 3. Install `pkg-config` (`brew install pkg-config`)
-4. Build using make
-5. Run the binary
+4. Run the configure script
+5. Build using make
+6. Run the binary
 
 ```
 git clone --depth=1 https://github.com/raspberrypi/usbboot
 cd usbboot
 brew install libusb
 brew install pkg-config
+./configure
 make
 sudo ./rpiboot
 ```
